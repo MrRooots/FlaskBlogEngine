@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Create Post
+{% endblock %}
+
+{% block content %}
+  <h1>Post creation form</h1>
+
+  <div class="container mt-2">
+    <form action="{{ url_for('post.display_post_creation_form') }}" method="post">
+      {% for field in form %}
+        <div class="form-group">
+          {{ field.label(class="mt-3 mb-3") }} {{ field(class="form-control") }}
+        </div>
+      {% endfor %}
+      <button class="btn btn-success mt-4 me-4" type="submit">Create!</button>
+      <button class="btn btn-danger mt-4" type="reset">Cancel!</button>
+    </form>
+  </div>
+{% endblock %}

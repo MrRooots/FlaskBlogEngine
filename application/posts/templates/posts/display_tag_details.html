@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Tag {{ tag.title }} posts
+{% endblock %}
+
+{% block content %}
+  <h1 class="mb-5">
+    Posts with <span class="text-info" style="text-decoration: underline">{{ tag.title }}</span> tag:
+  </h1>
+  <div class="container">
+    {% for post in tag.posts %}
+      {% include 'posts/includes/post_card.html' %}
+    {% endfor %}
+  </div>
+{% endblock %}

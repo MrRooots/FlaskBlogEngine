@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Posts
+{% endblock %}
+
+{% block content %}
+  <h1 class="mb-5">All posts:</h1>
+  <div class="container">
+    {% for post in post_slice.items %}
+      {% include 'posts/includes/post_card.html' %}
+    {% endfor %}
+  </div>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item {% if not post_slice.has_prev %} disabled {% endif %}">
+        <a class="page-link" href="./?page={{ post_slice.prev_num }}" tabindex="-1" aria-disabled="true">Back</a>
+      </li>
+      {% for page in post_slice.iter_pages() %}
+        <li class="page-item {% if page == post_slice.page %} active {% endif %}">
+          <a class="page-link" href="./?page={{ page }}">{{ page }}</a>
+        </li>
+      {% endfor %}
+      <li class="page-item {% if not post_slice.has_next %} disabled {% endif %}">
+        <a class="page-link" href="./?page={{ post_slice.next_num }}">Next</a>
+      </li>
+    </ul>
+  </nav>
+{% endblock %}

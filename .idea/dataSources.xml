@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="Main Data Base" uuid="6b866f02-a166-4aa4-a069-3b7c0d39ee1f">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\MrRooots\Documents\GitHub\FlaskBlogEngine\application\database.db</jdbc-url>
+    </data-source>
+  </component>
+</project>
