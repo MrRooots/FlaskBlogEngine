@@ -33,10 +33,12 @@ manager.add_command('database', MigrateCommand)
 
 
 class AdminMixin:
-  def is_accessible(self):
+  @staticmethod
+  def is_accessible():
     return current_user.has_role('admin')
 
-  def inaccessible_callback(self, name, **kwargs):
+  @staticmethod
+  def inaccessible_callback(name, **kwargs):
     return redirect(url_for('security.login', next=request.url))
 
 
@@ -57,16 +59,18 @@ class BaseModelView(ModelView):
     return super(BaseModelView, self).on_model_change(form, model, is_created)
 
 
+# View that controls the content of admin post creation form
 class PostAdminView(AdminMixin, BaseModelView):
   form_columns = ['title', 'body', 'tags']
 
 
+# View that controls the content of admin tag creation form
 class TagAdminView(AdminMixin, BaseModelView):
   form_columns = ['title', 'posts']
 
 
 # Admin dashboard
-admin = Admin(app, 'FlaskApp', url='/', index_view=HomeAdminView(name='Home'))
+admin = Admin(app, 'Blog Homepage', url='/', index_view=HomeAdminView())
 
 # Endpoint -> to remove blueprints name conflicts {before if discover another way ;/}
 # Endpoint: http://127.0.0.1:5000/admin/_posts/

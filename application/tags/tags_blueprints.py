@@ -17,5 +17,5 @@ def display_tags():
 def display_tag_details(slug):
   return render_template(
     'posts/display_tag_details.html',
-    tag=Tag.query.filter(Tag.slug == slug).first()
+    tag=Tag.query.filter(Tag.slug == slug).first_or_404()
   )

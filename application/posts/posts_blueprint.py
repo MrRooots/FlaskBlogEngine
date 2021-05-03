@@ -63,13 +63,13 @@ def display_post_creation_form():
 def display_post_details(slug):
   return render_template(
     'posts/display_post_details.html',
-    post=Post.query.filter(Post.slug == slug).first()
+    post=Post.query.filter(Post.slug == slug).first_or_404()
   )
 
 
 @posts.route('/<slug>/edit', methods=['POST', 'GET'])
 def display_post_edit_form(slug):
-  post = Post.query.filter(Post.slug == slug).first()  # Get the post from db
+  post = Post.query.filter(Post.slug == slug).first_or_404()  # Get the post from db
 
   # Check the method type
   if request.method == 'GET':
